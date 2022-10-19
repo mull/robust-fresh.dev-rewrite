@@ -1,10 +1,16 @@
 {
   "tasks": {
-    "start": "deno run -A --watch=static/,routes/ dev.ts"
+    "start": "deno run -A --unstable --watch=static/,routes/ dev.ts",
+    "codegen": "deno run -A https://raw.githubusercontent.com/seanaye/deno-npx/main/cli.ts npx edgeql-js --target deno"
   },
   "importMap": "./import_map.json",
   "compilerOptions": {
     "jsx": "react-jsx",
     "jsxImportSource": "preact"
+  },
+  "npx": {
+    "dependencies": {
+      "edgedb": "https://gitpkg.now.sh/seanaye/edgedb-js/node?dist"
+    }
   }
 }

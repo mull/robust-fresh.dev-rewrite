@@ -11,15 +11,16 @@ export const handler: Handlers<Data> = {
     const url = new URL(req.url)
     return ctx.render({ url: url.toString() })
   },
+
   async POST(req, ctx) {
     const formData = await req.formData()
     const url = formData.get("url")!.toString()
     const parsed = parseUrl(url)
 
-    const testId = await createTest(parsed)
+    const ids = await createTest(parsed)
 
     const headers = new Headers({
-      location: `${new URL(req.url).origin}/test/${testId}`,
+      location: `${new URL(req.url).origin}/test/${ids.test_run_id}`,
     })
     return new Response(null, {
       status: 302,
